@@ -2,12 +2,17 @@
 import express from 'express';
 import TodoRouter from './routers/todoRouter.js';
 import UserRouter from './routers/userRouter.js';
+import connectDB from './connection.js';
+
+connectDB();
 
 // initialize express
 const app = express();
 const port = 5500;
 
 // middlewares
+app.use(express.json());
+
 app.use('/todo', TodoRouter);
 app.use('/user', UserRouter);
 
