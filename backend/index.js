@@ -3,6 +3,7 @@ import express from 'express';
 import TodoRouter from './routers/todoRouter.js';
 import UserRouter from './routers/userRouter.js';
 import connectDB from './connection.js';
+import cors from 'cors';
 
 connectDB();
 
@@ -11,6 +12,10 @@ const app = express();
 const port = 5500;
 
 // middlewares
+app.use(cors({
+    origin: ['http://localhost:5173'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+}))
 app.use(express.json());
 
 app.use('/todo', TodoRouter);
